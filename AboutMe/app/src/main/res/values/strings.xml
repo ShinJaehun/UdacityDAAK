@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AboutMe</string>
+    <string name="name">Shin Jaehun</string>
+    <string name="yellow_star">Yellow Star</string>
+
+    <string name="bio">
+\n\nShin Jaehun IS A FASHION STYLIST, EDITOR, INDUSTRY EXPERT AND INFLUENCER BASED IN NEW YORK.
+\n\nShin Jaehun began her professional career in the fashion departments at Glamour, O, the Oprah Magazine, Editorialist and Redbook magazines. He launched Audree Kate Studios in 2017 and worked on freelance projects at Marc Jacobs, Alice + Olivia, J.Crew and Club Monaco, joined the styling team at Alice + Olivia and became a contributing fashion editor for StyleCaster.com. Over the past few years Audree has styled for various publications, celebrities and retail brands. In 2016, Audree founded a digital course and community for fashion students called Fashion Fundamentals and has hosted workshops and classes around the country, and wrote an ebook titled Fashion Fundamentals.
+\n\n
+    </string>
+    <string name="what_is_your_nickname">What is your nickname?</string>
+    <string name="done">Done</string>
+</resources>
