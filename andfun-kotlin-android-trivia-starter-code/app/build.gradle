@@ -70,9 +70,10 @@ dependencies {
 //    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
     implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
-
     // 오류 메시지
     // Duplicate class androidx.lifecycle.ViewModelLazy found in modules jetified-lifecycle-viewmodel-ktx-2.3.1-runtime (androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1) and lifecycle-viewmodel-2.5.0-runtime (androidx.lifecycle:lifecycle-viewmodel:2.5.0) Duplicate class androidx.lifecycle.ViewTreeViewModelKt found in modules jetified-lifecycle-viewmodel-ktx-2.3.1-runtime (androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1) and lifecycle-viewmodel-2.5.0-runtime (androidx.lifecycle:lifecycle-viewmodel:2.5.0)
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+
+    implementation "com.google.android.material:material:1.7.0"
 
 }
