@@ -21,13 +21,41 @@ import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.widget.TextView
 import androidx.core.text.HtmlCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android.trackmysleepquality.database.SleepNight
 import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * These functions create a formatted string that can be set in a TextView.
  */
+
+private val ONE_MINUTE_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.MINUTES)
+private val ONE_HOUR_MILLIS = TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS)
+
+fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Resources): String {
+    val durationMilli = endTimeMilli - startTimeMilli
+    val weekdayString = SimpleDateFormat("EEEE", Locale.getDefault()).format(startTimeMilli)
+    return when {
+        durationMilli < ONE_MINUTE_MILLIS -> {
+            val seconds = TimeUnit.SECONDS.convert(durationMilli, TimeUnit.MILLISECONDS)
+            res.getString(R.string.seconds_length, seconds, weekdayString)
+        }
+        durationMilli < ONE_HOUR_MILLIS -> {
+            val minutes = TimeUnit.MINUTES.convert(durationMilli, TimeUnit.MILLISECONDS)
+            res.getString(R.string.minutes_length, minutes, weekdayString)
+        }
+        else -> {
+            val hours = TimeUnit.HOURS.convert(durationMilli, TimeUnit.MILLISECONDS)
+            res.getString(R.string.hours_length, hours, weekdayString)
+        }
+    }
+}
+
+
 
 /**
  * Returns a string representing the numeric quality rating.
@@ -60,6 +88,7 @@ fun convertLongToDateString(systemTime: Long): String {
     return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
             .format(systemTime).toString()
 }
+
 
 /**
  * Takes a list of SleepNights and converts and formats it into one string for display.
@@ -103,3 +132,7 @@ fun formatNights(nights: List<SleepNight>, resources: Resources): Spanned {
         return HtmlCompat.fromHtml(sb.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 }
+
+// 이게 따로 구현을 해야 하는줄 알았는데 걍 여기서 선언해서 inflate하는 식으로 운영(영상에는 나와있지 않아서 찾기 곤란했음!)
+// https://github.com/udacity/andfun-kotlin-sleep-tracker-with-recyclerview/issues/8
+class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)

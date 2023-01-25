@@ -17,10 +17,7 @@
 package com.example.android.trackmysleepquality.sleepquality
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import kotlinx.coroutines.*
 
@@ -46,6 +43,7 @@ class SleepQualityViewModel(
         _navigateToSleepTracker.value = false // 이게 맞는거 아냐?
     }
 
+    // old version
     fun onSetSleepQuality(quality: Int) {
         uiScope.launch {
             withContext(Dispatchers.IO) {
@@ -56,5 +54,16 @@ class SleepQualityViewModel(
             _navigateToSleepTracker.value = true
         }
     }
+
+//    // new version  -> 이유는 모르겠는데 새로운 버전으로 viewModelScope를 이용하려니까 quality view -> tracker view nav 과정에서 exception 발생
+//    // 특히 여기서... java.lang.IllegalStateException: Cannot access database on the main thread since it may potentially lock the UI for a long period of time.
+//    fun onSetSleepQuality(quality: Int) {
+//        viewModelScope.launch {
+//            val tonight = database.get(sleepNightKey) ?: return@launch
+//            tonight.sleepQuality = quality
+//            database.update(tonight)
+//            _navigateToSleepTracker.value = true
+//        }
+//    }
 
 }
